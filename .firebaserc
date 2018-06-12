@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "ukcsa-b381d",
+    "staging": "uk-conference-manager"
+  }
+}
