@@ -2,6 +2,18 @@
 
 > UK Conference Manager
 
+
+## Config
+add folder and file /src/config/firebaseConfig.js
+File contains the firebase config export similar to:
+export const config = {
+  apiKey: 'XXXXXXXXXX',
+  authDomain: 'XXXXXXXXXX',
+  databaseURL: 'XXXXXXXXXX',
+  projectId: 'XXXXXXXXXX',
+  storageBucket: 'XXXXXXXXXX',
+  messagingSenderId: 'XXXXXXXXXX'
+}
 ## Build Setup
 
 ``` bash
