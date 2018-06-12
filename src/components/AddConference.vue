@@ -345,11 +345,20 @@ export default {
       })
     },
     upload (file) {
+      if (this.imageName != null) {
+        var imageRef = storage.ref().child('images/' + this.imageName)
+        imageRef.delete().then(function () {
+      }).catch(function (error) {
+        console.log('Error removing file')
+      })
+      }
       this.uploadTask = storage.ref('images/' + file.name).put(file)
       this.uploadTask.then(snapshot => {
+        this.imageName = this.uploadTask.snapshot.metadata.name
         this.downloadURL = this.uploadTask.snapshot.downloadURL
         this.$emit('url', this.downloadURL)
         this.form.logoURL = this.downloadURL
+        this.form.logoName = this.uploadTask.snapshot.metadata.name
       })
     },
     onSubmit (evt) {

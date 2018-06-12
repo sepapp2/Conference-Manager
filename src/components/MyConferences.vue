@@ -44,7 +44,7 @@
           Abstract Book
         </b-button>
         <b-button v-if="row.item.isAdmin" size="sm" variant="secondary" class="mr-1" @click="setAtendeeDetails(row.item.conference.Id)" v-b-modal.viewDetails>
-          Atendee Details
+          Attendee Details
         </b-button>
   </template>
   </b-table>
@@ -813,11 +813,20 @@ export default {
       })
     },
     upload (file) {
+      if (this.imageName != null) {
+        var imageRef = storage.ref().child('images/' + this.imageName)
+        imageRef.delete().then(function () {
+      }).catch(function (error) {
+        console.log('Error removing file')
+      })
+      }
       this.uploadTask = storage.ref('images/' + file.name).put(file)
       this.uploadTask.then(snapshot => {
+        this.imageName = this.uploadTask.snapshot.metadata.name
         this.downloadURL = this.uploadTask.snapshot.downloadURL
         this.$emit('url', this.downloadURL)
         this.form.logoURL = this.downloadURL
+        this.form.logoName = this.uploadTask.snapshot.metadata.name
       })
     }
   },

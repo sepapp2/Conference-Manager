@@ -47,7 +47,7 @@ exports.newRegistration = functions.firestore
           const displayName = newValue.displayName;
 
           const mailOptions = {
-            from: `${APP_NAME} <donoreply@uky.edu>`,
+            from: `${APP_NAME} <donotreply@uky.edu>`,
             to: email,
           };
         
